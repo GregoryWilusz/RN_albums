@@ -1,7 +1,8 @@
 import React from 'react';
-import {Text, View, Image} from 'react-native';
+import {Text, View, Image, Linking} from 'react-native';
 import Card from './Card'; //because I want to wrap AlbumList within Card component
 import CardSection from './CardSection';
+import Button from './Button';
 // Because we used props more than once, it's a good practise to destructure props (property) out of our arguments of props, e.g. {album}.
 // On top of that we are referencing the album object 3 times as well so we can also destructue it out thumnail_image, title and artist. We can
 // to this on two ways: (1) from the argument itself: "const AlbumList = ( {album: {thumbnail_image, title, artist} ) => {"
@@ -9,7 +10,7 @@ import CardSection from './CardSection';
 const AlbumList = ( {album} ) => {
 // Along with image we need to provide a prop called source. To the source reference we have to provide an OBJECT {} with a
 // URI property, which is a LINK to actual image that RN can reach
-    const {thumbnail_image, title, artist, image} = album; // props object destructured out of PROPS > ALBUM object
+    const {thumbnail_image, title, artist, image, url} = album; // props object destructured out of PROPS > ALBUM object
     const {
             thumbnailStyle,
             headerContentStyle,
@@ -38,6 +39,13 @@ const AlbumList = ( {album} ) => {
                 style={imageStyle}
                 source={ {uri: image}}
             />
+        </CardSection>
+
+        {/*We can also add property, ex.: text='button text'*/}
+        <CardSection>
+            <Button whenPressed={() => Linking.openURL(url)}>
+                Buy Now
+            </Button>
         </CardSection>
     </Card>
     );
