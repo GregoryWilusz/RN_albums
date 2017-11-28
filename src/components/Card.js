@@ -1,12 +1,14 @@
 import React from 'react';
 import {View} from 'react-native';
 
-const Card = () => {
+const Card = (props) => {
 
     return (
         <View style={styles.containerStyle}>
-            
+            {props.children}
         </View>
+        // {props.children} will render any components that we passed to this current one!
+        // for example: it's executes line from AlbumDetail: <Text>{props.album.title}</Text> and replaces it instead of {props.children}!
     );
 };
 
@@ -22,7 +24,7 @@ const styles = {
       shadowRadius: 2, // Because borderRadius is also 2
       elevation: 1,
       marginLeft: 5,
-      marginRigth: 5,
+      marginRight: 5,
       marginTop: 10,
   },
 };
